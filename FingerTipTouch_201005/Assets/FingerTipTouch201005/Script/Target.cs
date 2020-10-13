@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
     public SerialHandler sh;
 
     private float timer=0;
+    private float timer2 = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +50,18 @@ public class Target : MonoBehaviour
                     }
                 }
             }
+            Debug.Log(hit[1].collider.tag);
             float dis = hit[0].distance - hit[1].distance;
 
-            moveActuater((int)(dis*100));
+            if (Time.time - timer2 > 0.1)
+            {
+                timer2 = Time.time;
+                moveActuater((int)(dis * 100 * 1023 / 20));
+            }
             
             if (dis > 0)
             {
+
                 moveTarget((tipfront.transform.position - tipbottom.transform.position).normalized * dis);
             }
             
@@ -70,6 +77,7 @@ public class Target : MonoBehaviour
     
     private void moveTarget(Vector3 vecpow)
     {
+        Debug.Log(vecpow);
         Rigidbody rb = target.GetComponent<Rigidbody>();
         rb.AddForce(vecpow);
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 362126616760243038}
   m_Layer: 0
   m_Name: VTipBottom
-  m_TagString: tipbottom
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 362126617022197708}
   m_Layer: 0
   m_Name: VTipFront
-  m_TagString: tipfront
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
