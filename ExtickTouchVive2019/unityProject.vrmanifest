@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.exticktouchvive2019.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\tazuke\\GitHub\\FingerTipTouch\\ExtickTouchVive2019\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "ExtickTouchVive2019 [Testing]"
+        }
+      }
+    }
+  ]
+}
