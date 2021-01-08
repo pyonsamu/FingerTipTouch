@@ -398,8 +398,7 @@ public class DeviceController : MonoBehaviour {
                     {
                         //VisualChangeScript.mixExtendDeviceFrag = true; //kataoka 200727 視覚変化を起こすためのフラグ
                         str = sliderLength.ToString();
-                        serialHandler.Write(str);
-                    }
+                        serialHandler.Write(str);                    }
                     else
                     {
                         //VisualChangeScript.mixExtendDeviceFrag = false; //kataoka 200727 視覚変化を起こすためのフラグ
@@ -462,10 +461,12 @@ public class DeviceController : MonoBehaviour {
                     preDtoO = DtoO;
                     //Debug.Log("OK2");
                 }
-                if (hitCount == 2) // yama 181212 デバイスのレイが床とオブジェクトの両方に接触しているとき
+
+                if (hitCount >= 2) // yama 181212 デバイスのレイが床とオブジェクトの両方に接触しているとき
                 {
+
                     Write_PreLength(); // yama 181212 事前の伸縮を実行 //kataoka 201009 振動の原因
-                }else if(hitCount == 1)
+                }else if(hitCount <= 1)
                 {
                     serialHandler.Write("1023");
                 }
@@ -570,7 +571,7 @@ public class DeviceController : MonoBehaviour {
                                     {
                                         
                                         serialHandler.Write(str);     // yama 180731 一定範囲内でなければArduinoに更新情報を送信
-                                                                            //Debug.Log("preLength = " + str);
+                                        //Debug.Log("preLength = " + str);
                                     }
                                 }
                                 else if (slideMode == 1) //伸縮予測モード
@@ -579,6 +580,7 @@ public class DeviceController : MonoBehaviour {
                                     if (0 <= nextLength && nextLength < 1024)   // yama 180807 更新情報を送るのであればnextの長さを判定するべきでは？
                                     {
                                         serialHandler.Write(str + ";");     // yama 180731 一定範囲内でなければArduinoに更新情報を送信
+                                        
                                         //Debug.Log("preLength = " + str);
                                     }
                                 }
