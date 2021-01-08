@@ -25,20 +25,23 @@ public class SerialHandlerControler : MonoBehaviour
 
     public void sendMessage(string str)
     {
-        int num = int.Parse(str);
-        if (Math.Abs(prenum - num) < 5) 
+        //int num = int.Parse(str);
+        //Debug.Log(prenum - num);
+       // if (Math.Abs(prenum - num) > 0) 
         {
             sh_sol.Write("0;");
-            
+            sh_mor.Write(str + ";");
+            //prenum = num;
         }
-        sh_mor.Write(str + ";");
+
+        
     }
 
     public void datareceived(string str)
     {
         if (int.Parse(str) == 1)
         {
-           Debug.Log(str);
+           //Debug.Log(str);
            sh_sol.Write("1;");
         }
     }

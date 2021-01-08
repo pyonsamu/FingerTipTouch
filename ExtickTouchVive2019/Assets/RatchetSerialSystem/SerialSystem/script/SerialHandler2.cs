@@ -10,6 +10,7 @@ public class SerialHandler2 : MonoBehaviour
    // public GameObject inputfield;
     public GameObject serialhandlercontroler;
     private SerialHandlerControler shc;
+    float timer=0;
 
     //ポート名
     //例
@@ -42,13 +43,19 @@ public class SerialHandler2 : MonoBehaviour
         {
             //OnDataReceived(message_);
             shc.datareceived(message_);
-            
         }
         isNewMessageReceived_ = false;
+
     }
 
     void OnDestroy()
     {
+        Close();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("OnApplicationQuit");
         Close();
     }
 
@@ -70,11 +77,11 @@ public class SerialHandler2 : MonoBehaviour
         isNewMessageReceived_ = false;
         isRunning_ = false;
 
-        if (thread_ != null && thread_.IsAlive)
+        /*if (thread_ != null && thread_.IsAlive)
         {
             thread_.Join();
         }
-
+        */
         if (serialPort_ != null && serialPort_.IsOpen)
         {
             serialPort_.Close();

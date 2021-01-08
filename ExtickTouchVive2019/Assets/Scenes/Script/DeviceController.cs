@@ -82,6 +82,8 @@ public class DeviceController : MonoBehaviour {
     public bool MedianFilterFrag = true;
     public int smoothDataNum = 3;
     private float[] smoothData;
+
+    private bool isexistedO = false; //tazuke 201207 Rayの軌道上にオブジェクトが存在するかどうか
     
     void Start()
     {
@@ -121,7 +123,7 @@ public class DeviceController : MonoBehaviour {
             //Debug.Log("Middle; hit.x = " + tipD.transform.position.x + ", hit.y = " + tipD.transform.position.y + ", hit.z = " + tipD.transform.position.z);
             ray = new Ray(endD.transform.position, (tipD.transform.position - endD.transform.position));
             hits = Physics.RaycastAll(ray.origin, ray.direction, 3);
-
+            isexistedO = false;   //tazuke 201207 変数初期化
             foreach (RaycastHit hit in hits)
             {
                 if (hit.collider.tag == objTag)
@@ -131,6 +133,7 @@ public class DeviceController : MonoBehaviour {
                     hitNormalO = hit.normal;    // yama 181215 デバイスの方向ベクトルが接触した位置の仮想物体の法線
 
                     hitCount++;     // yama 181214 接触前伸縮をスムーズに行うために追加
+                    isexistedO = true;  //tazuke 201207 Rayの軌道上にオブジェクトが存在したらtrue
                 }
                 else if (hit.collider.tag == baseTag)
                 {
@@ -462,6 +465,9 @@ public class DeviceController : MonoBehaviour {
                 if (hitCount == 2) // yama 181212 デバイスのレイが床とオブジェクトの両方に接触しているとき
                 {
                     Write_PreLength(); // yama 181212 事前の伸縮を実行 //kataoka 201009 振動の原因
+                }else if(hitCount == 1)
+                {
+                    serialHandler.Write("1023");
                 }
                 //VisualChangeScript.mixExtendDeviceFrag = false; //kataoka 200727 視覚変化を起こすためのフラグ
             }
