@@ -825,7 +825,7 @@ public class DeviceController : MonoBehaviour {
         //tazuke 201116 (/0.5)→(*100/10)上記の正規化演算式の変更についてを参照
         int diff = (int)(Vector3.Distance(hitO, tempTipD)  *100/10 * 1000);  // yama 181128 デバイス先端が仮想物体表面にどれだけ近づいたか
         
-        if (diff > (JITTER + 20) && diff < 300 && !DtoO)        // yama 181128 一定以上近づいている&デバイスが仮想物体に触れていない場合
+        if (diff > (JITTER + 20) && diff < 10000 && !DtoO)        // yama 181128 一定以上近づいている&デバイスが仮想物体に触れていない場合
         {
             //string str = (1024 - (int)(Vector3.Distance(hitO, hitF) / 0.5 * 1024)).ToString();
 
